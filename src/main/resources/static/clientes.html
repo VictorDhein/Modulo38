@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Clientes</title>
+</head>
+<body>
+<h1>Clientes</h1>
+<form action="/clientes/salvar" method="post">
+    <input type="text" name="nome" placeholder="Nome" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="telefone" placeholder="Telefone">
+    <button type="submit">Salvar</button>
+</form>
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Ações</th>
+    </tr>
+    <th:block th:each="cliente : ${clientes}">
+        <tr>
+            <td th:text="${cliente.nome}"></td>
+            <td th:text="${cliente.email}"></td>
+            <td th:text="${cliente.telefone}"></td>
+            <td><a th:href="@{/clientes/excluir/{id}(id=${cliente.id})}">Excluir</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

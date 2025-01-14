@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Produtos</title>
+</head>
+<body>
+<h1>Produtos</h1>
+<form action="/produtos/salvar" method="post">
+  <input type="text" name="nome" placeholder="Nome" required>
+  <input type="number" step="0.01" name="preco" placeholder="Preço" required>
+  <input type="number" name="quantidade" placeholder="Quantidade" required>
+  <button type="submit">Salvar</button>
+</form>
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Preço</th>
+    <th>Quantidade</th>
+    <th>Ações</th>
+  </tr>
+  <th:block th:each="produto : ${produtos}">
+    <tr>
+      <td th:text="${produto.nome}"></td>
+      <td th:text="${produto.preco}"></td>
+      <td th:text="${produto.quantidade}"></td>
+      <td><a th:href="@{/produtos/excluir/{id}(id=${produto.id})}">Excluir</a></td>
+    </tr>
+  </th:block>
+</table>
+</body>
+</html>
